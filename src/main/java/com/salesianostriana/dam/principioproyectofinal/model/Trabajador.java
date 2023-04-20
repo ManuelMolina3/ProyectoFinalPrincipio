@@ -29,7 +29,7 @@ public class Trabajador {
 	private String nombre;
 	private String apellido;
 	private String correo_electronico;
-	private Long contraseña;
+	private String contraseña;
 	private double sueldoBase;
 	private double precioHoraExtra;
 	

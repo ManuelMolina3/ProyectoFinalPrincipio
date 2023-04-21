@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -38,5 +41,15 @@ public class Trabajador {
 	@OneToMany(mappedBy= "jefeDeObra", fetch= FetchType.EAGER)
 	@Builder.Default
 	private List <Reforma> reformas = new ArrayList<> ();
+	
+	@ManyToMany
+	@Builder.Default
+	@JoinTable(
+			name= "trabaja",
+			joinColumns= @JoinColumn(name= "id_trabajador"),
+			inverseJoinColumns= @JoinColumn(name="id_reforma")
+			)
+	
+	private List<Reforma> trabajaEnReforma = new ArrayList <>();
 
 }

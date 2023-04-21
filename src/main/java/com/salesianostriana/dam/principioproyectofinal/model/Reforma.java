@@ -1,18 +1,24 @@
 package com.salesianostriana.dam.principioproyectofinal.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -54,5 +60,10 @@ public class Reforma {
 		propietario.getReformas().remove(this);
 		this.propietario= null;
 	}
+	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@ManyToMany(mappedBy="trabajaEnReforma", fetch = FetchType.EAGER)
+	private List<Trabajador> ReformaTrabajadapor = new ArrayList<>();
 	
 }
